@@ -1,25 +1,22 @@
-import numpy as np
-import pandas as pd
-import seaborn as sns
+
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import matplotlib.pyplot as plt
 
+from subprocess import check_output
 
-limit_rows   = 800
-df           = pd.read_csv("C:\Users\IBM_ADMIN\PycharmProjects\Python1\data",dtype={"PassengerID":int,
-                                                    "Survived":bool,
-                                                    "Pclass":int,
-                                                    "Name":str,
-                                                    "Sex":str,
-                                                    "Age":int,
-                                                    "SibSp":int,
-                                                    "Parch":int,
-                                                    "Ticket":str,
-                                                    "Fare":float,
-                                                    "Cabin":str,
-                                                    "Embarked":str}, nrows=limit_rows)
+df = pd.read_csv('C:/Users/IBM_ADMIN/PycharmProjects/Python1/data/redditworldnews.csv')
 
-unique_ids   = pd.Series(df['ncodpers'].unique())
-limit_people = 1.2e4
-unique_id    = unique_ids.sample(n=limit_people)
-df           = df[df.ncodpers.isin(unique_id)]
-df.describe()
+from wordcloud import WordCloud, STOPWORDS
+
+word_string=" ".join(df['title'].str.lower())
+wordcloud = WordCloud(stopwords=STOPWORDS,
+                          background_color='white',
+                      max_words=300
+                         ).generate(word_string)
+
+plt.clf()
+plt.imshow(wordcloud)
+plt.axis('off')
+plt.show()
+
