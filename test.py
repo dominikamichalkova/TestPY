@@ -3,9 +3,9 @@ import numpy;
 array1 = numpy.array([1, 2, 3]);
 print(array1[1] ** 3);
 
-name = raw_input("What is your name?")
-quest = raw_input("What is your quest?")
-color = raw_input("What is your favorite color?")
+name = raw_input ("What is your name?")
+quest = raw_input ("What is your quest?")
+color = raw_input ("What is your favorite color?")
 
 print "Ah, so your name is %s, your quest is %s, " \
       "and your favorite color is %s." % (name, quest, color)
