@@ -1,4 +1,3 @@
-import pandas as pd
+import seaborn as sns
 
-
-df = pd.read_csv('C:/Users/IBM_ADMIN/PycharmProjects/Python1/data/redditworldnews.csv')
+help(sns.heatmap)
