@@ -1,24 +1,25 @@
-from os import path
-from wordcloud import WordCloud
 
-d = path.dirname(__file__)
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 
-# Read the whole text.
-text = open(path.join(d, 'constitution.txt')).read()
+# Input data files are available in the "../input/" directory.
+# For example, running this (by clicking run or pressing Shift+Enter) will list the files in the input directory
 
-# Generate a word cloud image
-wordcloud = WordCloud().generate(text)
+from subprocess import check_output
 
-# Display the generated image:
-# the matplotlib way:
+df = pd.read_csv(r'C:\Users\IBM_ADMIN\PycharmProjects\Python1\data\redditworldnews.csv')
+# Any results you write to the current directory are saved as output.
+
 import matplotlib.pyplot as plt
-plt.imshow(wordcloud)
-plt.axis("off")
+from wordcloud import WordCloud, STOPWORDS
 
-# lower max_font_size
-wordcloud = WordCloud(max_font_size=40).generate(text)
-plt.figure()
+word_string=" ".join(df['title'].str.lower())
+wordcloud = WordCloud(stopwords=STOPWORDS,
+                          background_color='white',
+                      max_words=300
+                         ).generate(word_string)
+
+plt.clf()
 plt.imshow(wordcloud)
-plt.axis("off")
+plt.axis ('off')
 plt.show()
-
