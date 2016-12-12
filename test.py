@@ -24,4 +24,11 @@ print bool_one;
 print bool_two;
 print bool_five;
 
+number=-55;
+print abs(number)
+
+
+
+
+
 
