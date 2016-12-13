@@ -1,6 +1,6 @@
-import numpy;
+import numpy as np; #linear algebra
 
-array1 = numpy.array([1, 2, 3]);
+array1 = np.array([1, 2, 3]);
 print(array1[1] ** 3);
 
 name = raw_input ("What is your name?")
@@ -26,6 +26,23 @@ print bool_five;
 
 number=-55;
 print abs(number)
+
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+
+
+df = pd.read_csv(r'C:\Users\IBM_ADMIN\PycharmProjects\Python1\data\redditworldnews.csv')
+# Any results you write to the current directory are saved as output.
+
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud, STOPWORDS, random_color_func
+
+word_string=" ".join(df['title'].str.lower())
+wordcloud = WordCloud(stopwords=STOPWORDS,background_color= '#ff8080',max_words=300).generate(word_string)
+
+plt.clf()
+plt.imshow(wordcloud)
+plt.axis ('off')
+plt.show()
 
 
 

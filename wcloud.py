@@ -8,11 +8,13 @@ from pytagcloud import create_tag_image, create_html_data, make_tags, LAYOUT_HOR
 YOUR_TEXT = "There are at least 2 packages for creating wordcloud visualization, first of the packages to create a wordcloud\
 is simply called wordcloud, the other one pytagcloud using pygame and simplejson packages as requirements"
 
-tags = make_tags(get_tag_counts(YOUR_TEXT), maxsize=70)
+tags = make_tags(get_tag_counts(YOUR_TEXT), maxsize=100)
 
-create_tag_image(tags, 'cloud_large.png', size=(900, 600), fontname='Lobster', layout=LAYOUT_HORIZONTAL) #fonts on GitHub/pytagcloud/fonts
+create_tag_image(tags, 'cloud_large.png', size=(1300, 800), fontname='Lobster', layout=LAYOUT_MOST_HORIZONTAL) #fonts on GitHub/pytagcloud/fonts
 
 import webbrowser
 webbrowser.open('cloud_large.png') # see results
 
 #https://docs.python.org/2/library/functions.html#abs
+
+

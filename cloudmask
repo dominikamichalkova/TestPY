@@ -1,0 +1,69 @@
+from os import path
+from scipy.misc import imread
+import matplotlib.pyplot as plt
+
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+
+d = path.dirname(__file__)
+
+# Read the whole text.
+text = open(path.join(d, 'data/alice.txt')).read()  #d as a file variable
+w = process_text(text, max_features=1000)
+
+# read the mask image
+
+alice_mask = imread(path.join(d, 'img/alice_mask.png'))
+
+stopwords = STOPWORDS.copy()
+stopwords.add("said")
+stopwords.add("upon")
+stopwords.add("looked")
+
+wc = WordCloud(background_color="white", max_words=1000, mask=alice_mask,
+               stopwords=stopwords)
+# generate word cloud
+wc.generate(text)
+
+# store to file
+wc.to_file(path.join(d, "img/alice.png"))
+
+# show
+plt.imshow(wc)
+plt.axis("off")
+#plt.figure()
+#plt.imshow(alice_mask, cmap=plt.cm.gray)
+plt.axis("off")
+plt.show()
+
+###############
+
+txtfile = path.dirname(__file__)
+
+# Read the whole text.
+text = open(path.join(txtfile, 'data/3student.txt')).read()
+
+# read the mask / color image
+
+cas_coloring = imread(path.join(txtfile, "img/cassandra.png"))
+
+wc = WordCloud(background_color="white", max_words=2000, mask=cas_coloring,
+               stopwords=STOPWORDS.add("said"),
+               max_font_size=40, random_state=42)
+# generate word cloud
+wc.generate(text)
+
+# create coloring from image
+image_colors = ImageColorGenerator(cas_coloring)
+
+# show
+plt.imshow(wc)
+plt.axis("off")
+#plt.figure()
+# recolor wordcloud and show
+# we could also give color_func=image_colors directly in the constructor
+plt.imshow(wc.recolor(color_func=image_colors)) #new wordcloud using colors from the image
+plt.axis("off")  #turn off showing the scale [x,y]
+plt.figure()
+plt.imshow(cas_coloring, cmap=plt.cm.gray)
+plt.axis("off")
+plt.show()
