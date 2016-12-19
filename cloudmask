@@ -1,5 +1,4 @@
-```
-
+```python
 from os import path
 from scipy.misc import imread
 import matplotlib.pyplot as plt
@@ -69,5 +68,4 @@ plt.figure()
 plt.imshow(cas_coloring, cmap=plt.cm.gray)
 plt.axis("off")
 plt.show()
-
 ```
